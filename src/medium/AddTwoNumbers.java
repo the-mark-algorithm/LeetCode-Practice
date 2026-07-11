@@ -1,7 +1,7 @@
 package medium;
 
 import java.util.Scanner;
-import medium.datatypes.ListNode;
+import common.ListNode;
 
 /**
  * This class implements one or more solutions to the problem described below:

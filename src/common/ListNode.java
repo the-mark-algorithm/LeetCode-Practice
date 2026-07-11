@@ -1,4 +1,4 @@
-package medium.datatypes;
+package common;
 
 public class ListNode {
     private int val;
