@@ -1,4 +1,5 @@
-import java.io.IOException;
+package easy;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -80,7 +81,7 @@ public class TwoSum {
             final int[] nums = List.of(numString.trim().split(",")).stream().map(String::trim).mapToInt(Integer::parseInt).toArray();
 
             // calculate result
-            final TwoSum.Solution solution = new TwoSum.Solution1();
+            final Solution solution = new Solution1();
             final int[] result = solution.twoSum(nums, target);
 
             System.out.println(String.format("Result - Indices of elements in list that add up to the target: %d, %d", result[0], result[1]));
