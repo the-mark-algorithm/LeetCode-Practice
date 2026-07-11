@@ -66,11 +66,11 @@ public class AddTwoNumbers {
         final Scanner scanner = new Scanner(System.in);
         
         try {
-            System.out.println("Enter the first integer (>= 0): ");
+            System.out.print("Enter the first integer (>= 0): ");
             final String firstNum = scanner.nextLine().trim();
             final ListNode num1 = parseStringNumToListNode(firstNum);
 
-            System.out.println("Enter the second integer (>= 0): ");
+            System.out.print("Enter the second integer (>= 0): ");
             final String secondNum = scanner.nextLine().trim();
             final ListNode num2 = parseStringNumToListNode(secondNum);
 
@@ -86,10 +86,10 @@ public class AddTwoNumbers {
         }
     }
 
-    public static ListNode parseStringNumToListNode(String num) {
+    public static ListNode parseStringNumToListNode(String numString) {
         ListNode result = new ListNode();
-        for (int i = 0; i < num.length(); i++) {
-            int digit = Integer.valueOf(num.charAt(i));
+        for (int i = 0; i < numString.length(); i++) {
+            int digit = Character.getNumericValue(numString.charAt(i));
             
             if (i == 0) {
                 result = new ListNode(digit);
