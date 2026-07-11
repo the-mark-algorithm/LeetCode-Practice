@@ -40,9 +40,11 @@ public class AddTwoNumbers {
     public static class Solution1 implements Solution {
         public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
             ListNode result = new ListNode();
+            ListNode currNode = result;
             int carryOver = 0;
             int currVal = 0;
-            while (l1.getNext() != null || l2.getNext() != null) {
+            
+            while (true) {
                 int val1 = l1 == null ? 0 : l1.getVal();
                 int val2 = l2 == null ? 0 : l2.getVal();
 
@@ -54,8 +56,17 @@ public class AddTwoNumbers {
                     currVal = currVal % 10;
                 }
 
-                result = new ListNode(currVal);
-                result = result.getNext();
+                currNode.setVal(currVal);
+
+                l1 = l1 == null ? null : l1.getNext();
+                l2 = l2 == null ? null : l2.getNext();
+
+                if (l1 == null && l2 == null && carryOver == 0) {
+                    break;
+                }
+
+                currNode.setNext(new ListNode());
+                currNode = currNode.getNext();
             }
 
             return result;
@@ -104,9 +115,11 @@ public class AddTwoNumbers {
     public static Integer parseListNodeToInteger(ListNode num) {
         Integer result = 0;
         int multiplier = 1;
-        while (num.getNext() != null) {
-            result += (num.getVal() * multiplier);
+        ListNode currNode = num;
+        while (currNode != null) {
+            result += (currNode.getVal() * multiplier);
             multiplier *= 10;
+            currNode = currNode.getNext();
         }
 
         return result;
