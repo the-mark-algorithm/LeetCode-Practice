@@ -1,5 +1,7 @@
 package medium;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -35,8 +37,35 @@ public class LongestSubstringWithoutRepeatingCharacters {
     public static class Solution1 implements Solution {
 
         public int lengthOfLongestSubstring(String s) {
-            // TODO: implement solution
-            return 0;
+            int result = 0;
+            int currLen = 0;
+            int start = 0;
+            Map<Integer, Integer> tracker = new HashMap<>();
+
+            for (int i = 0; i < s.length(); i++) {
+                char c = s.charAt(i);
+
+                // Check if 'duplicate' is in portion of string we already processed - should not count, remove it
+                if (tracker.containsKey((int) c) && tracker.get((int) c) < start) {
+                    tracker.remove((int) c);
+                }
+
+                // If we've ended unique consecutive run or the end of string, update values
+                if (tracker.containsKey((int) c)) {
+                    // update trackers for next iteration and next potential longest substring
+                    start = tracker.get((int) c) + 1;
+                    tracker.remove((int) c);
+
+                    currLen = i - start + 1;
+                } else {
+                    currLen += 1;
+                }
+
+                tracker.put((int) c, i);
+                if (result < currLen) result = currLen;
+            }
+
+            return result;
         }
     }
 
